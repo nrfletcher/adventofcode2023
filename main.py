@@ -1,6 +1,4 @@
-import os
-import subprocess
-import sys
+import os, sys, subprocess
 
 def run_script(script_filename, *args):
     script_path = os.path.join("pysolutions", script_filename)

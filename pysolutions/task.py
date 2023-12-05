@@ -1,5 +1,4 @@
-import os
-import sys
+import os, sys
 
 def get_input(choice):
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -16,5 +15,5 @@ def get_input(choice):
     file_path = os.path.abspath(os.path.join(current_directory, '..', 'inputs', file_name))
 
     with open(file_path, 'r') as file:
-        content = file.read()
-        return content
+        lines = [line.strip() for line in file]
+        return lines
