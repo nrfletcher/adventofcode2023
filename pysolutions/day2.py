@@ -74,8 +74,7 @@ def parttwo():
 
     print(tsum)
 
-
-def partone():
+def day2():
     games = {}
     count = 0
     red_max, green_max, blue_max = 12, 13, 14 
