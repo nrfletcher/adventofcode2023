@@ -21,11 +21,11 @@ def parttwo():
                     for colj in range(begin - 1, j + 1):
                         if rowi >= 0 and rowi < len(lines) and j >= 0 and j < len(lines[0]):
                             if lines[rowi][colj] not in '1234567890.':
-                                print(f'added: {curr_num} val: {lines[rowi][colj]}')
                                 partnumsums += int(curr_num)
                 curr_num = ''
 
     print(partnumsums)
+
 
 def partone():
     partnumsums = 0
@@ -50,3 +50,5 @@ def partone():
                 curr_num = ''
 
     print(partnumsums)
+
+parttwo()
