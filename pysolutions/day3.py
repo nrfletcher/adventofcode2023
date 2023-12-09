@@ -7,28 +7,36 @@ def parttwo():
     # If we see a gear, check for adjacent numbers (check all 8 surrounding spots, and count instances)
     # If total adjacent is == 2, get those two numbers, multiply them, and add to our total
     gearratiosums = 0
+    partnumsums = 0
+    gears = {}
 
     for row in range(len(lines)):
+        curr_num = ''
+        begin = 0
         for j, char in enumerate(lines[row]):
+            
+            if char in '1234567890':
+                curr_num += char
+            if char in '1234567890' and j > 0 and len(curr_num) == 1:
+                begin = j
 
-            if char == '*':
-                count = 0
+            if len(curr_num) > 0 and char not in '1234567890' or (j == len(lines[0]) - 1 and len(curr_num) > 0):
                 for rowi in range(row - 1, row + 2):
-                    seen = False
-                    for colj in range(j - 1, j + 2):
-                        if rowi >= 0 and rowi < len(lines) and j >= 0 and j < len(lines[0]) and lines[rowi][colj] in '1234567890':
-                            seen = True
-                        else:
-                            if seen:
-                                count += 1
-                                seen = False
-                    if seen:
-                        count += 1
-                if count > 0:
-                    print(f'{rowi} {colj} {count}')
-                            
+                    for colj in range(begin - 1, j + 1):
+                        if rowi >= 0 and rowi < len(lines) and j >= 0 and j < len(lines[0]):
+                            if lines[rowi][colj] == '*':
+                                gear = str(rowi) + str(colj)
+                                if gear in gears:
+                                    gears[gear].append(int(curr_num))
+                                else:
+                                    gears[gear] = [int(curr_num)]
+                                partnumsums += int(curr_num)
+                curr_num = ''
 
-    # print(partnumsums)
+    for gear in gears:
+        if len(gears[gear]) == 2:
+            gearratiosums += gears[gear][0] * gears[gear][1]
+    print(gearratiosums)
 
 
 def partone():
